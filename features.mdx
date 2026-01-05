@@ -1,0 +1,140 @@
+---
+title: Core Features Guide
+description: Explore the essential tools in Workflow In-Spiration for accurate and efficient scoring in pole and aerial arts.
+---
+
+## Overview
+
+Workflow In-Spiration provides powerful tools to streamline scoring for pole and aerial arts competitions. You define routines, input scores in real-time, review via video, and export results effortlessly. These features ensure precision and collaboration among judges and organizers.
+
+<Columns cols={2}>
+  <Card title="Routine Setup" icon="settings" href="#routine-setup">
+    Define criteria and structure routines quickly.
+  </Card>
+  <Card title="Real-time Scoring" icon="zap" href="#real-time-scoring">
+    Enter deductions and calculate totals instantly.
+  </Card>
+  <Card title="Video Review" icon="play-circle" href="#video-review">
+    Sync playback with scores for accurate judging.
+  </Card>
+  <Card title="Export Scores" icon="download" href="#export-scores">
+    Share professional score sheets in multiple formats.
+  </Card>
+</Columns>
+
+## Routine Setup and Criteria Definition
+
+Set up routines by creating custom criteria tailored to pole or aerial disciplines. You specify elements like transitions, holds, and drops with weightings and deduction rules.
+
+<Steps>
+  <Step title="Create New Routine" icon="plus">
+    Navigate to the Routines dashboard and click "New Routine".
+
+    Enter details:
+    - Competitor name
+    - Division (e.g., Amateur Pole)
+    - Duration (`<3min` for short routines)
+  </Step>
+  <Step title="Define Criteria" icon="list">
+    Add scoring categories.
+
+````json
+{
+  "criteria": [
+    "Technique": { "max": 10, "weight": 0.4 },
+    "Execution": { "max": 10, "weight": 0.3 },
+    "Artistry": { "max": 10, "weight": 0.3 }
+  ]
+}
+````
+  </Step>
+  <Step title="Save and Assign" icon="save">
+    Assign to judges and start scoring.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Use predefined templates for common divisions to speed up setup.
+</Callout>
+
+## Real-time Scoring Input and Calculations
+
+Input scores live during performances. The app auto-calculates totals, applies deductions, and flags anomalies like scores `<6.0` in high-difficulty elements.
+
+<Tabs>
+  <Tab title="Pole Scoring" icon="activity">
+    Focus on spins and climbs.
+
+    ```javascript
+    // Example score input
+    const poleScore = {
+      technique: 8.5,
+      execution: 9.0,
+      artistry: 7.8,
+      deductions: -0.5  // Minor balance issue
+    };
+    const total = (8.5 * 0.4) + (9.0 * 0.3) + (7.8 * 0.3) - 0.5;  // 8.37
+    ```
+  </Tab>
+  <Tab title="Aerial Scoring" icon="wind">
+    Emphasize drops and transitions.
+
+    ```javascript
+    // Aerial example
+    const aerialScore = {
+      technique: 9.2,
+      execution: 8.7,
+      artistry: 9.5,
+      deductions: -1.0  // Drop deduction
+    };
+    const total = (9.2 * 0.4) + (8.7 * 0.3) + (9.5 * 0.3) - 1.0;  // 9.07
+    ```
+  </Tab>
+</Tabs>
+
+## Video Playback Integration for Review
+
+Integrate competition footage for post-performance review. Scrub to timestamps matching scored elements and adjust scores collaboratively.
+
+<Expandable title="Advanced Sync Features" default-open="false">
+  - Timestamp linking: Jump to `{elementStart}` and `{elementEnd}`
+  - Multi-judge averaging: Auto-compute consensus scores
+  - Slow-motion review for deductions `>0.5`
+</Expandable>
+
+## Exporting and Sharing Score Sheets
+
+Generate and share detailed score sheets. Choose formats for judges, competitors, or officials.
+
+<CodeGroup tabs="JSON,CSV,PDF">
+```json
+{
+  "competitor": "Jane Doe",
+  "division": "Pole Advanced",
+  "scores": {
+    "judge1": 8.37,
+    "judge2": 8.45,
+    "average": 8.41
+  },
+  "placement": 1
+}
+```
+
+```csv
+Competitor,Division,Judge1,Judge2,Average,Placement
+Jane Doe,Pole Advanced,8.37,8.45,8.41,1
+John Smith,Aerial Pro,7.92,8.10,8.01,2
+```
+
+*PDF exports include charts and signatures.*
+</CodeGroup>
+
+| Format | Use Case | Includes |
+|--------|----------|----------|
+| JSON   | API integration | Raw data, metadata |
+| CSV    | Spreadsheets | Tabular export |
+| PDF    | Official sheets | Charts, signatures, watermarks |
+
+<Callout kind="success">
+  Exports are watermark-free for verified organizers.
+</Callout>

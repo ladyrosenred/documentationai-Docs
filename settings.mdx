@@ -1,0 +1,157 @@
+---
+title: App Settings and Customization
+description: Configure Workflow In-Spiration to match your competition needs and preferences.
+---
+
+## Overview
+
+Workflow In-Spiration provides flexible settings to tailor the app to your pole and aerial arts competitions. Manage user profiles, customize scoring criteria, set notification preferences, and control data privacy. Access settings via the gear icon in the top-right corner of the app dashboard at `https://dashboard.example.com/settings`.
+
+<Callout kind="tip">
+  Save changes after each section to apply them immediately. Test configurations during practice sessions before competitions.
+</Callout>
+
+<Columns cols={2}>
+  <Card title="Profile & Permissions" icon="users" href="#profile">
+    Manage judges, athletes, and access levels.
+  </Card>
+  <Card title="Scoring Criteria" icon="star" href="#scoring">
+    Customize tricks and point systems.
+  </Card>
+  <Card title="Notifications" icon="bell" href="#notifications">
+    Control alerts and sync options.
+  </Card>
+  <Card title="Backup & Privacy" icon="shield" href="#backup">
+    Secure your competition data.
+  </Card>
+</Columns>
+
+## User Profile Management and Permissions
+
+Set up profiles for judges, athletes, and organizers. Assign roles like `judge`, `athlete`, or `admin` to control access.
+
+### Adding a New Profile
+
+<Steps>
+  <Step title="Navigate to Profiles" icon="users">
+    Tap **Profiles** in the settings menu.
+  </Step>
+  <Step title="Enter Details">
+    Fill in name, email, and role. Use the dropdown for permissions.
+  </Step>
+  <Step title="Save and Verify">
+    Tap **Save**. The profile appears in the list with assigned permissions.
+  </Step>
+</Steps>
+
+<ParamField path="profile.role" param-type="string" required="true">
+  Role determines access: `admin` (full), `judge` (scoring only), `athlete` (view scores).
+</ParamField>
+
+<ParamField path="profile.email" param-type="string" required="false">
+  Optional verified email for notifications.
+</ParamField>
+
+## Scoring Criteria Customization
+
+Adapt scoring to your event's rules, such as pole sport difficulty, execution, and artistry.
+
+<Tabs>
+  <Tab title="Pole Sports" icon="zap">
+    Customize for A-D skills.
+
+    <CodeGroup tabs="JSON,UI">
+    ````json
+    {
+      "criteria": {
+        "difficulty": { "maxPoints": 10, "tricks": ["A-Spin", "Gemini"] },
+        "execution": { "maxPoints": 10 },
+        "artistry": { "maxPoints": 5 }
+      }
+    }
+    ````
+
+    ````markdown
+    1. Go to Scoring > Pole
+    2. Edit max points per category
+    3. Add custom tricks
+    ````
+    </CodeGroup>
+  </Tab>
+  <Tab title="Aerial Silks" icon="star">
+    Focus on drops and wraps.
+
+    <CodeGroup tabs="JSON,UI">
+    ````json
+    {
+      "criteria": {
+        "drops": { "maxPoints": 8, "tricks": ["Single Star Drop", "Double Helix"] },
+        "holds": { "maxPoints": 7 }
+      }
+    }
+    ````
+
+    ````markdown
+    1. Select Aerial Silks
+    2. Adjust drop weights
+    3. Save routine template
+    ````
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+## Notification and Sync Preferences
+
+Choose real-time alerts for scores, routine updates, and cloud sync.
+
+| Preference | Options | Default |
+|------------|---------|---------|
+| Score Updates | Push, Email, In-App | In-App |
+| Sync Frequency | Real-time, Hourly, Daily | Real-time |
+| Sound Alerts | On/Off | On |
+
+<Callout kind="info">
+  Enable real-time sync for live competitions to avoid delays.
+</Callout>
+
+## Data Backup and Privacy Options
+
+Protect your routines and scores with automatic backups.
+
+<Expandable title="Advanced Privacy Settings" default-open="false">
+
+Set data retention to `{retentionDays: 30}` and enable end-to-end encryption.
+
+````json
+{
+  "backup": {
+    "autoBackup": true,
+    "retentionDays": 90,
+    "encryption": "enabled"
+  },
+  "privacy": {
+    "shareScores": "judges-only",
+    "exportFormat": "pdf"
+  }
+}
+````
+
+</Expandable>
+
+### Backup Steps
+
+<Steps>
+  <Step title="Enable Auto-Backup">
+    Toggle **Auto-Backup** to `true`.
+  </Step>
+  <Step title="Export Data">
+    Tap **Export** to download JSON or PDF.
+  </Step>
+  <Step title="Verify">
+    Check `https://dashboard.example.com/backups` for latest files.
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+  Regularly export data. Backups delete after `{retentionDays}` unless extended.
+</Callout>

@@ -1,0 +1,114 @@
+---
+title: Changelog
+description: Track the latest updates and improvements to Workflow In-Spiration.
+---
+
+## Recent Updates
+
+<Update label="2024-10-15" description="v2.1.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Added live scoring dashboard for real-time judge inputs during competitions
+- Introduced athlete profile import from CSV files for faster event setup
+- Enabled custom scoring rubrics per discipline (pole, aerial silk, hoop)
+
+## Improvements
+
+- Optimized routine playback speed controls for smoother video review
+- Enhanced mobile responsiveness on tablets for on-site judging
+
+## Bug Fixes
+
+- Fixed sync issues between judge devices and central scoreboard
+- Resolved export errors for PDF score sheets with special characters
+
+</Update>
+
+<Update label="2024-09-20" description="v2.0.0" tags={["feature", "breaking"]}>
+
+## New Features
+
+- Launched multi-event management with tournament bracketing
+- Integrated video analysis tools with frame-by-frame scoring annotations
+- Added spectator view mode with public QR code access
+
+## Breaking Changes
+
+- Updated API endpoints from `/v1/scores` to `/v2/scores` – update your integrations
+- Removed legacy XML export; use JSON or PDF instead
+
+## Bug Fixes
+
+- Corrected deduction calculation for apparatus falls
+- Fixed judge login timeouts during high-concurrency events
+
+</Update>
+
+<Update label="2024-08-05" description="v1.5.0" tags={["bugfix", "improvement"]}>
+
+## Improvements
+
+- Streamlined routine creation wizard with drag-and-drop skill ordering
+- Added dark mode toggle for late-night event preparation
+
+## Bug Fixes
+
+- Patched security vulnerability in shared event links (CVE-2024-5678)
+- Fixed crash when importing routines with missing apparatus data
+
+</Update>
+
+## Upgrade Instructions
+
+<Callout kind="info">
+  Always back up your event data before upgrading. Check the [release notes](https://github.com/workflow-inspiration/releases) for detailed migration steps.
+</Callout>
+
+<Steps>
+  <Step title="Download Latest" icon="download">
+    Visit the [downloads page](https://dashboard.example.com/downloads) and get the installer for your platform.
+  </Step>
+  <Step title="Install" icon="package">
+    <Tabs>
+      <Tab title="macOS" icon="apple">
+````bash
+sudo installer -pkg WorkflowInspiration-2.1.0.pkg -target /
+````
+      </Tab>
+      <Tab title="Windows" icon="monitor">
+````bash
+WorkflowInspiration-2.1.0.exe /S
+````
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Migrate Data" icon="database">
+    Launch the app and follow the built-in migration wizard to import your previous events.
+  </Step>
+  <Step title="Verify" icon="check-circle">
+    Create a test event and simulate a full scoring flow to ensure everything works.
+  </Step>
+</Steps>
+
+## Upcoming Roadmap
+
+<Columns cols={3}>
+  <Card title="AI Assistance" icon="zap" href="#">
+    Coming in v2.2.0: AI-powered skill difficulty suggestions based on video analysis.
+  </Card>
+  <Card title="Team Events" icon="users" href="#">
+    v2.3.0: Support for group routines and synchronized scoring.
+  </Card>
+  <Card title="Integrations" icon="plug" href="#">
+    Planned: Zapier and Slack webhooks for automated notifications.
+  </Card>
+</Columns>
+
+<Expandable title="How to Stay Updated" default-open="true">
+  Subscribe to our changelog RSS feed at `https://docs.example.com/changelog.xml` or join the community Discord for beta access. Enable auto-updates in your app settings under `Preferences > Updates`.
+</Expandable>
+
+<Callout kind="tip">
+  Found a bug? Report it via the in-app feedback tool or GitHub issues.
+</Callout>
